@@ -51,6 +51,7 @@
   --color-sand-light: var(--sand-light);
   --color-steel: var(--steel);
   --color-steel-light: var(--steel-light);
+  --color-whatsapp: var(--whatsapp);
 }
 
 :root {
@@ -85,6 +86,7 @@
   --border: oklch(0.888 0.024 248);
   --input: oklch(0.888 0.024 248);
   --ring: oklch(0.372 0.081 262.3);
+  --whatsapp: oklch(0.72 0.17 155);
 }
 
 @layer base {
