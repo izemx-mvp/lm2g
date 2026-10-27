@@ -142,9 +142,24 @@ const soilLayers = [
   },
 ] as const;
 
-const manifesto =
-  "Depuis 2014, LM2G accompagne promoteurs, entreprises du BTP et maîtres d'ouvrage. Nous sondons, nous testons, nous contrôlons — pour que chaque ouvrage repose sur une donnée fiable, de la conception jusqu'à la réception.";
-const manifestoAccents = new Set(["sondons,", "testons,", "contrôlons", "fiable,"]);
+/** Les trois verbes du laboratoire (section qui suit le hero). */
+const pillars = [
+  {
+    verb: "Nous sondons.",
+    text: "Sondages carottés et essais in situ pour connaître le terrain réel, couche par couche.",
+    color: "#A88A5E",
+  },
+  {
+    verb: "Nous testons.",
+    text: "Essais normalisés sur sols, granulats, bétons et enrobés, tracés jusqu'au PV signé.",
+    color: "#8B6428",
+  },
+  {
+    verb: "Nous contrôlons.",
+    text: "Un suivi sur chantier jusqu'à la réception, pour que l'ouvrage tienne ses promesses.",
+    color: "#523A1C",
+  },
+];
 
 const processSteps = [
   {
@@ -332,7 +347,7 @@ function Index() {
     <>
       <style>{pageStyles}</style>
       <SoilHero />
-      <Manifesto />
+      <LabIntro />
       <ServicesIndex />
       <StrataDivider top="var(--background)" bottom="var(--navy)" />
       <MethodBorehole />
@@ -414,14 +429,18 @@ function SoilHero() {
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pt-28 pb-12 sm:px-6 lg:px-8 lg:pt-32 lg:pb-0">
         <p className="hero-rise inline-flex items-center gap-2 rounded-full border border-steel/30 bg-white/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-widest text-sand backdrop-blur-sm">
           <span className="size-1.5 animate-pulse rounded-full bg-ochre" />
-          Laboratoire de géotechnique · Casablanca · Depuis {site.founded}
+          <span className="hidden sm:inline">Laboratoire de géotechnique · </span>Casablanca · Depuis {site.founded}
         </p>
-        <h1 className="mt-5 max-w-4xl font-display text-[2.6rem] leading-[1] font-bold tracking-tight sm:text-6xl xl:text-7xl">
+        <h1 className="hero-title mt-5 max-w-4xl font-display text-[2.6rem] leading-[1.02] font-bold tracking-tight sm:text-6xl xl:text-7xl">
           <span className="hero-rise block" style={{ animationDelay: "80ms" }}>
             Nous lisons le sol
           </span>
-          <span className="hero-rise block text-sand" style={{ animationDelay: "180ms" }}>
-            avant que vous ne construisiez.
+          <span className="hero-rise block text-[#F1E6D2]" style={{ animationDelay: "180ms" }}>
+            avant que vous ne{" "}
+            <span className="relative inline-block">
+              construisiez.
+              <span className="absolute inset-x-0 -bottom-1 h-1 rounded-full bg-ochre sm:-bottom-1.5 sm:h-1.5" aria-hidden />
+            </span>
           </span>
         </h1>
         <p
@@ -460,7 +479,7 @@ function SoilHero() {
         ref={groundRef}
         onPointerMove={onPointerMove}
         onPointerLeave={() => setInteracting(false)}
-        className="relative mt-auto mb-12 h-72 w-full cursor-crosshair select-none sm:h-96 lg:absolute lg:inset-x-0 lg:bottom-12 lg:mb-0 lg:h-[46%]"
+        className="relative mt-auto mb-12 h-72 w-full cursor-crosshair select-none sm:h-96 lg:absolute lg:inset-x-0 lg:bottom-12 lg:mb-0 lg:h-[40%]"
         aria-label="Coupe de sol illustrative : déplacez la souris pour lire les couches"
         role="img"
       >
@@ -531,6 +550,9 @@ function SoilHero() {
             </span>
           ))}
         </div>
+
+        {/* Fondu sombre en haut de la coupe : sépare le titre du sol */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-navy-deep/75 to-transparent" aria-hidden />
 
         {/* Sonde */}
         <div className="pointer-events-none absolute inset-0" aria-hidden>
@@ -608,42 +630,79 @@ function SoilHero() {
 
 /* -------------------------------- Manifeste -------------------------------- */
 
-function Manifesto() {
-  const { ref, progress } = useSectionProgress<HTMLDivElement>(0.75);
-  const words = manifesto.split(" ");
+function LabIntro() {
+  const facts = [
+    { k: "Création", v: `${site.founded}` },
+    { k: "Siège & laboratoire", v: "Casablanca" },
+    { k: "Interventions", v: "Tout le Maroc" },
+    { k: "Missions", v: "G1 → G5" },
+  ];
   return (
-    <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
-      <p className="font-mono text-xs font-semibold uppercase tracking-widest text-ochre">
-        00 — Le laboratoire
-      </p>
-      <div ref={ref}>
-        <p className="mt-6 font-display text-3xl leading-[1.15] font-semibold sm:text-5xl lg:text-6xl">
-          {words.map((w, i) => {
-            const lit = progress * 1.35 > i / words.length;
-            const accent = manifestoAccents.has(w);
-            return (
-              <span
-                key={i}
-                className={`transition-colors duration-500 ${
-                  lit ? (accent ? "text-ochre" : "text-foreground") : "text-foreground/15"
-                }`}
-              >
-                {w}{" "}
-              </span>
-            );
-          })}
-        </p>
+    <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+      <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+        {/* Texte */}
+        <div>
+          <Reveal>
+            <p className="font-mono text-xs font-semibold uppercase tracking-widest text-ochre">00 — Le laboratoire</p>
+            <h2 className="mt-4 font-display text-3xl leading-tight font-bold text-foreground sm:text-4xl lg:text-5xl">
+              Depuis {site.founded}, une seule mission :{" "}
+              <span className="text-ochre">que chaque ouvrage repose sur une donnée fiable.</span>
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              LM2G accompagne promoteurs, entreprises du BTP et maîtres d'ouvrage, de la conception jusqu'à la
+              réception des travaux.
+            </p>
+          </Reveal>
+
+          <ol className="mt-10 space-y-3">
+            {pillars.map((p, i) => (
+              <Reveal key={p.verb} delay={i * 0.1}>
+                <li className="group relative flex gap-5 overflow-hidden rounded-2xl border border-border bg-card p-5 transition-colors hover:border-ochre sm:p-6">
+                  <span className="absolute inset-y-0 left-0 w-1.5" style={{ backgroundColor: p.color }} aria-hidden />
+                  <span className="font-mono text-sm text-muted-foreground">0{i + 1}</span>
+                  <div>
+                    <p className="font-display text-xl font-bold text-foreground sm:text-2xl">{p.verb}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground sm:text-base">{p.text}</p>
+                  </div>
+                </li>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+
+        {/* Visuel */}
+        <Reveal delay={0.15}>
+          <div className="relative mx-auto max-w-md lg:max-w-none">
+            <div className="overflow-hidden rounded-3xl">
+              <img
+                src={soilCores}
+                alt="Carottes de sondage rangées en caisses au laboratoire LM2G"
+                loading="lazy"
+                className="aspect-[4/5] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]"
+              />
+            </div>
+            {/* Étiquette flottante */}
+            <div className="absolute right-4 -bottom-6 left-4 rounded-2xl bg-navy p-5 text-white shadow-2xl sm:right-auto sm:-left-6 sm:w-72">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-sand">Carotte SC-01 · 0 → 10 m</p>
+              <div className="mt-3 flex h-3 overflow-hidden rounded-full" aria-hidden>
+                {["#A88A5E", "#8B6428", "#6B4F2A", "#523A1C", "#2E2416"].map((c) => (
+                  <span key={c} className="flex-1" style={{ backgroundColor: c }} />
+                ))}
+              </div>
+              <p className="mt-3 text-sm leading-snug text-steel-light">
+                Chaque échantillon est identifié, testé et archivé jusqu'au rapport.
+              </p>
+            </div>
+          </div>
+        </Reveal>
       </div>
-      <dl className="mt-14 grid grid-cols-2 gap-y-6 border-t border-border pt-8 lg:grid-cols-4">
-        {[
-          { k: "Création", v: `${site.founded}` },
-          { k: "Siège & laboratoire", v: "Casablanca" },
-          { k: "Interventions", v: "Tout le Maroc" },
-          { k: "Missions", v: "G1 → G5" },
-        ].map((f) => (
+
+      {/* Chiffres clés */}
+      <dl className="mt-20 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-border pt-8 lg:mt-16 lg:grid-cols-4">
+        {facts.map((f) => (
           <div key={f.k}>
-            <dt className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{f.k}</dt>
-            <dd className="mt-1 font-display text-2xl font-semibold text-navy">{f.v}</dd>
+            <dt className="text-sm text-muted-foreground">{f.k}</dt>
+            <dd className="mt-1 font-display text-2xl font-semibold text-navy sm:text-3xl">{f.v}</dd>
           </div>
         ))}
       </dl>
@@ -842,12 +901,12 @@ function ReportSection() {
   );
 
   return (
-    <section className="mx-auto grid max-w-7xl items-center gap-16 px-4 py-24 sm:px-6 sm:py-28 lg:grid-cols-[1.1fr_1fr] lg:px-8">
+    <section className="mx-auto grid max-w-7xl items-center gap-16 overflow-x-clip px-4 py-24 sm:px-6 sm:py-28 lg:grid-cols-[1.1fr_1fr] lg:px-8">
       {/* Document */}
       <Reveal>
         <div className="relative mx-auto max-w-md">
-          <div className="absolute inset-0 translate-x-4 translate-y-4 rotate-2 rounded-sm bg-secondary" aria-hidden />
-          <div className="relative -rotate-1 rounded-sm bg-white p-7 text-[#1A2233] shadow-2xl ring-1 ring-black/5 sm:p-9">
+          <div className="absolute inset-0 translate-x-2 translate-y-3 rotate-2 rounded-sm bg-secondary sm:translate-x-4 sm:translate-y-4" aria-hidden />
+          <div className="relative -rotate-1 rounded-sm bg-white p-6 pl-8 text-[#1A2233] shadow-2xl ring-1 ring-black/5 sm:p-9">
             <div className="flex items-start justify-between gap-4 border-b border-[#1A2233]/10 pb-4">
               <div>
                 <p className="font-display text-2xl font-bold text-navy">
@@ -1257,7 +1316,7 @@ function DomainesExplorer() {
           })}
         </ul>
 
-        <div className="relative min-h-[24rem] overflow-hidden rounded-3xl bg-navy-deep text-white" role="tabpanel">
+        <div className="relative order-first min-h-[20rem] overflow-hidden rounded-3xl bg-navy-deep text-white sm:min-h-[24rem] lg:order-none" role="tabpanel">
           {domaines.map((d, i) => (
             <img
               key={d.label}
@@ -1271,7 +1330,7 @@ function DomainesExplorer() {
             />
           ))}
           <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/40 to-transparent" />
-          <div className="relative flex h-full min-h-[24rem] flex-col justify-end p-7">
+          <div className="relative flex h-full min-h-[20rem] flex-col justify-end p-6 sm:min-h-[24rem] sm:p-7">
             <p className="font-mono text-[10px] uppercase tracking-widest text-sand">
               Domaine {String(active + 1).padStart(2, "0")} / {String(domaines.length).padStart(2, "0")}
             </p>
@@ -1363,6 +1422,8 @@ const pageStyles = `
 .lm2g-marquee { animation: lm2g-marquee 60s linear infinite; }
 .lm2g-marquee:hover { animation-play-state: paused; }
 .marquee-mask { mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+
+.hero-title { text-shadow: 0 2px 28px rgba(15, 25, 45, 0.65); }
 
 @keyframes lm2g-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 .hero-rise { opacity: 0; animation: lm2g-rise .8s cubic-bezier(.2,.7,.2,1) forwards; }
