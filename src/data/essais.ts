@@ -16,6 +16,8 @@ export type Essai = {
   objet: string;
 };
 
+// CONTENU EXEMPLE À REMPLACER — références normatives à valider avec le laboratoire LM2G
+// (certaines normes NF P94 ont été reprises par la série NF EN ISO 17892).
 export const essais: Essai[] = [
   {
     id: "granulometrie-sols",
@@ -136,6 +138,78 @@ export const essais: Essai[] = [
     norme: "NF P94-116",
     objet:
       "Reconnaissance rapide de la résistance de pointe des terrains superficiels et contrôle de densification.",
+  },
+  {
+    id: "valeur-bleu",
+    nom: "Valeur au bleu de méthylène (VBS)",
+    categorie: "Sols",
+    norme: "NF P94-068",
+    objet:
+      "Mesure de l'activité argileuse d'un sol : critère clé de classification et de réutilisation des matériaux.",
+  },
+  {
+    id: "cisaillement",
+    nom: "Cisaillement direct à la boîte",
+    categorie: "Sols",
+    norme: "NF P94-071-1",
+    objet:
+      "Détermination de la cohésion et de l'angle de frottement interne d'un sol, pour les calculs de stabilité et de portance.",
+  },
+  {
+    id: "flexion-beton",
+    nom: "Résistance à la flexion du béton",
+    categorie: "Bétons & mortiers",
+    norme: "NF EN 12390-5",
+    objet:
+      "Résistance à la traction par flexion sur éprouvettes prismatiques, notamment pour les dallages et chaussées béton.",
+  },
+  {
+    id: "carottage",
+    nom: "Carottage sur ouvrage",
+    categorie: "Bétons & mortiers",
+    norme: "NF EN 12504-1",
+    objet:
+      "Prélèvement de carottes dans un ouvrage existant pour évaluer la résistance du béton en place ou l'épaisseur des couches.",
+  },
+  {
+    id: "marshall",
+    nom: "Essai Marshall",
+    categorie: "Enrobés",
+    norme: "NF EN 12697-34",
+    objet:
+      "Stabilité et fluage d'un enrobé bitumineux, utilisés pour la formulation et le contrôle des mélanges.",
+  },
+  {
+    id: "masse-volumique-enrobe",
+    nom: "Masse volumique et compacité des enrobés",
+    categorie: "Enrobés",
+    norme: "NF EN 12697-6",
+    objet:
+      "Détermination de la masse volumique apparente sur carottes ou éprouvettes pour vérifier le compactage de la couche.",
+  },
+  {
+    id: "pressiometre",
+    nom: "Essai pressiométrique Ménard",
+    categorie: "In situ",
+    norme: "NF EN ISO 22476-4",
+    objet:
+      "Mesure en forage du module pressiométrique et de la pression limite, base du dimensionnement des fondations.",
+  },
+  {
+    id: "essai-plaque",
+    nom: "Essai de plaque",
+    categorie: "In situ",
+    norme: "NF P94-117-1",
+    objet:
+      "Mesure du module de déformation d'une plateforme (EV2) pour vérifier sa portance avant la mise en œuvre des couches.",
+  },
+  {
+    id: "lefranc",
+    nom: "Essai de perméabilité Lefranc",
+    categorie: "In situ",
+    norme: "NF EN ISO 22282-2",
+    objet:
+      "Mesure de la perméabilité des terrains en forage, utile pour les fouilles, les rabattements de nappe et les ouvrages hydrauliques.",
   },
 ];
 

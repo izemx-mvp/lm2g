@@ -14,8 +14,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { site } from "@/config/site";
+import { FloatingActions } from "@/components/layout/FloatingActions";
 
 function NotFoundComponent() {
   return (
@@ -148,7 +148,7 @@ function RootComponent() {
           <Outlet />
         </div>
         <Footer />
-        <WhatsAppButton />
+        <FloatingActions />
       </div>
     </QueryClientProvider>
   );

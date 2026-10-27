@@ -8,9 +8,12 @@ export type Realisation = {
   details: string[];
   image: string;
   imageAlt: string;
+  /** true tant que le projet est illustratif (à remplacer par une référence réelle). */
+  exemple?: boolean;
 };
 
-// CONTENU EXEMPLE À REMPLACER — projets génériques illustratifs
+// CONTENU EXEMPLE À REMPLACER — projets génériques illustratifs (exemple: true).
+// Remplacer par les références réelles de LM2G (sans nom de client sans accord écrit).
 export const realisationsDomaines = [
   "Bâtiment",
   "Routes",
@@ -25,7 +28,7 @@ export const realisations: Realisation[] = [
     id: "autoroute",
     titre: "Projet routier — autoroute",
     domaine: "Routes",
-    lieu: "Axe Casablanca – Berrechid (CONTENU EXEMPLE À REMPLACER)",
+    lieu: "Axe Casablanca – Berrechid",
     resume:
       "Études géotechniques et contrôle de compactage pour une section d'autoroute, avec suivi des plateformes et des couches de chaussée.",
     prestations: [
@@ -39,13 +42,14 @@ export const realisations: Realisation[] = [
       "Suivi de compactage régulier sur plateforme avec procès-verbaux de conformité.",
     ],
     image: "road-works",
+    exemple: true,
     imageAlt: "Travaux de pose d'enrobés sur une section routière",
   },
   {
     id: "residentiel",
     titre: "Complexe résidentiel",
     domaine: "Bâtiment",
-    lieu: "Casablanca (CONTENU EXEMPLE À REMPLACER)",
+    lieu: "Casablanca",
     resume:
       "Étude géotechnique de conception et suivi des fonds de fouilles pour un complexe résidentiel multi-bâtiments.",
     prestations: [
@@ -58,14 +62,15 @@ export const realisations: Realisation[] = [
       "Recommandations de fondations superficielles et semi-profondes selon les bâtiments.",
       "Interventions régulières au stade de l'exécution avec PV d'expertise des fouilles.",
     ],
-    image: "site-aerial",
+    image: "building-works",
+    exemple: true,
     imageAlt: "Chantier de fondations d'un complexe résidentiel",
   },
   {
     id: "barrage",
     titre: "Barrage hydraulique",
     domaine: "Barrages & hydraulique",
-    lieu: "Région de l'intérieur (CONTENU EXEMPLE À REMPLACER)",
+    lieu: "Région de l'intérieur",
     resume:
       "Reconnaissance géotechnique de site, essais sur matériaux d'étanchéité et contrôle de compactage des remblais.",
     prestations: [
@@ -78,14 +83,15 @@ export const realisations: Realisation[] = [
       "Caractérisation des matériaux de barrage : granulométrie, Proctor, perméabilité.",
       "Assistance technique lors des phases de mise en place et de compactage.",
     ],
-    image: "soil-cores",
-    imageAlt: "Carottes de sondage étudiées en caisses",
+    image: "dam-site",
+    exemple: true,
+    imageAlt: "Remblai compacté d'un barrage en terre en construction",
   },
   {
     id: "plateforme-industrielle",
     titre: "Plateforme industrielle",
     domaine: "Industriel",
-    lieu: "Zone industrielle — Casablanca (CONTENU EXEMPLE À REMPLACER)",
+    lieu: "Zone industrielle — Casablanca",
     resume:
       "Étude géotechnique et contrôle qualité pour la construction d'une plateforme logistique et de ses dessertes.",
     prestations: [
@@ -98,14 +104,15 @@ export const realisations: Realisation[] = [
       "Contrôle du compactage des zones de circulation lourde.",
       "Suivi des résistances du béton de dallage par écrasement d'éprouvettes.",
     ],
-    image: "site-aerial",
+    image: "industrial-platform",
+    exemple: true,
     imageAlt: "Chantier de plateforme industrielle avec excavation",
   },
   {
     id: "immeuble-r6",
     titre: "Immeuble R+6",
     domaine: "Bâtiment",
-    lieu: "Casablanca (CONTENU EXEMPLE À REMPLACER)",
+    lieu: "Casablanca",
     resume:
       "Étude géotechnique, contrôle des fondations et suivi du béton pour un immeuble d'habitation de R+6.",
     prestations: [
@@ -119,13 +126,14 @@ export const realisations: Realisation[] = [
       "Contrôle du béton livré : slump à la réception, compression à 7 et 28 jours.",
     ],
     image: "concrete-cubes",
+    exemple: true,
     imageAlt: "Cubes de béton en presse d'essai",
   },
   {
     id: "vrd-lotissement",
     titre: "VRD — lotissement",
     domaine: "VRD",
-    lieu: "Région de Casablanca (CONTENU EXEMPLE À REMPLACER)",
+    lieu: "Région de Casablanca",
     resume:
       "Contrôle qualité complet des voiries et réseaux d'un lotissement : compactage, matériaux et enrobés.",
     prestations: [
@@ -138,7 +146,29 @@ export const realisations: Realisation[] = [
       "Contrôle des matériaux de couche de fondation et de roulement au laboratoire.",
       "Dossier de synthèse transmis au maître d'ouvrage avant réception.",
     ],
-    image: "road-works",
-    imageAlt: "Compactage et pose d'enrobés sur voirie",
+    image: "site-aerial",
+    exemple: true,
+    imageAlt: "Vue d'ensemble d'un lotissement en cours de viabilisation",
+  },
+  {
+    id: "pont-oued",
+    titre: "Pont sur oued",
+    domaine: "Ouvrages d'art",
+    lieu: "Province de Settat",
+    resume:
+      "Reconnaissance des appuis, recommandations de fondations profondes et contrôle des bétons d'un pont en béton armé.",
+    prestations: [
+      "Sondages carottés au droit des appuis",
+      "Essais pressiométriques et de laboratoire",
+      "Contrôle des bétons de piles et de tablier",
+    ],
+    details: [
+      "Sondages au droit de chaque appui pour identifier l'horizon porteur sous les alluvions de l'oued.",
+      "Essais pressiométriques et essais de laboratoire pour dimensionner les fondations profondes.",
+      "Prélèvements et écrasements d'éprouvettes sur les bétons de piles et de tablier jusqu'à la réception.",
+    ],
+    image: "bridge-works",
+    exemple: true,
+    imageAlt: "Pont en béton armé en construction au-dessus d'un oued",
   },
 ];
