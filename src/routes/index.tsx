@@ -27,7 +27,7 @@ import {
   ArrowRight,
   Landmark,
   Route as RouteIcon,
-  Bridge,
+  Waypoints,
   Droplets,
   LandPlot,
   Factory,
@@ -116,7 +116,7 @@ const processSteps = [
 const domaines = [
   { icon: Building2, label: "Bâtiment" },
   { icon: RouteIcon, label: "Routes" },
-  { icon: Bridge, label: "Ouvrages d'art" },
+  { icon: Waypoints, label: "Ouvrages d'art" },
   { icon: Droplets, label: "Barrages & hydraulique" },
   { icon: LandPlot, label: "VRD" },
   { icon: Factory, label: "Industriel" },
